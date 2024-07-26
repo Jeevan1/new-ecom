@@ -1,10 +1,10 @@
 "use client";
-import Banner from "@/components/Banner";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 import React, { useEffect } from "react";
 
-const getProducts = async () => {
-  const url = "https://dummyjson.com/products?sortBy=title&order=asc";
+const getProducts = async (category: string | string[]) => {
+  const url = `https://dummyjson.com/products/category/${category}`;
   const options = {
     method: "GET",
   };
@@ -18,12 +18,12 @@ const getProducts = async () => {
   }
 };
 
-const Page = () => {
+const Page = ({ params: { slug } }: { params: { slug: string[] } }) => {
   const [products, setProducts] = React.useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const datas = await getProducts();
+      const datas = await getProducts(slug);
       setProducts(datas);
       console.log(datas);
     };
@@ -32,6 +32,7 @@ const Page = () => {
 
   return (
     <div>
+      hdgjgs: {slug}
       {products.map((item: any) => (
         <div key={item.id}>
           <p>{item.title}</p>

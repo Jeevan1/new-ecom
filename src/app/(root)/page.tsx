@@ -1,4 +1,5 @@
 "use client";
+import Banner from "@/components/Banner";
 import Image from "next/image";
 import React, { useEffect } from "react";
 
@@ -31,6 +32,8 @@ const Page = () => {
 
   return (
     <div>
+      <Banner />
+
       {/* {products.map((item: any) => (
         <div key={item.id}>
           <p>{item.title}</p>

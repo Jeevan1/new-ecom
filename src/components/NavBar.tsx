@@ -30,7 +30,7 @@ const NavBar = () => {
             <ul className="hidden group-hover:block absolute top-[95%] border min-w-40 bg-white z-10 px-2 rounded-sm max-h-[70vh] overflow-auto">
               {categories.map((category, index) => (
                 <li className="w-full  px-1 border-b" key={index}>
-                  <Link href={`/category/${category}`} className="">
+                  <Link href={`/products/category/${category}`} className="">
                     {category}
                   </Link>
                 </li>
@@ -50,7 +50,7 @@ const NavBar = () => {
                     className="w-full px-1 py-1 hover:bg-light border-b"
                     key={index}
                   >
-                    <Link href={`/category/${category}`} className="">
+                    <Link href={`/products/category/${category}`} className="">
                       {category}
                     </Link>
                   </li>

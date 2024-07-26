@@ -1,10 +1,9 @@
 "use client";
-import Banner from "@/components/Banner";
 import Image from "next/image";
 import React, { useEffect } from "react";
 
 const getProducts = async () => {
-  const url = "https://dummyjson.com/products?sortBy=title&order=asc";
+  const url = "https://dummyjson.com/products/";
   const options = {
     method: "GET",
   };
