@@ -32,9 +32,12 @@ const Page = () => {
   }, []);
 
   return (
-    <div>
+    <div className="grid grid-cols-3 mx-auto w-80 mt-5">
       {products.map((item: any) => (
-        <div key={item.id}>
+        <div
+          key={item.id}
+          className="border flex flex-col justify-center items-center"
+        >
           <p>{item.title}</p>
           <Image
             src={item.thumbnail}
