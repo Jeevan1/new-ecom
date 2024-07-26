@@ -24,7 +24,7 @@ const Banner = () => {
             className="h-full"
           >
             {products &&
-              products.slice(0, 3).map((product) => (
+              products.slice(0, 3).map((product: any) => (
                 <SwiperSlide key={product.id} className="w-full h-full">
                   <BannerSwiperSlide product={product} />
                 </SwiperSlide>
