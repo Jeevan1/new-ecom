@@ -1,50 +1,35 @@
-"use client";
 import Banner from "@/components/Banner";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
+import { getCategories } from "../api-service";
+import CategoryCard from "@/components/CategoryCard";
 
-const getProducts = async () => {
-  const url = "https://dummyjson.com/products/";
-  const options = {
-    method: "GET",
-  };
-
-  try {
-    const response = await fetch(url, options);
-    const result = await response.json();
-    return result.products;
-  } catch (error) {
-    console.error(error);
-  }
+type Category = {
+  slug: string;
+  name: string;
+  url: string;
 };
-
-const Page = () => {
-  const [products, setProducts] = React.useState([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const datas = await getProducts();
-      setProducts(datas);
-      console.log(datas);
-    };
-    fetchProducts();
-  }, []);
-
+const Page = async () => {
+  const { categories, loading } = await getCategories();
   return (
-    <div>
+    <div className="w-80 mx-auto">
       <Banner />
 
-      {/* {products.map((item: any) => (
-        <div key={item.id}>
-          <p>{item.title}</p>
-          <Image
-            src={item.thumbnail}
-            alt={item.title}
-            width={200}
-            height={200}
-          />
+      <div className="my-10">
+        <h1 className="text-2xl font-semibold mb-4 text-grey">
+          Shop By Category
+        </h1>
+        <div className="grid grid-cols-6 gap-6">
+          {categories &&
+            categories.slice(0, 12).map((item: Category, index: number) => {
+              return (
+                <>
+                  <CategoryCard item={item} index={index} />
+                </>
+              );
+            })}
         </div>
-      ))} */}
+      </div>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 interface Props {
@@ -6,6 +7,7 @@ interface Props {
   onClick?: () => void;
   className?: string;
   background?: string;
+  color?: string;
 }
 const Button: React.FC<Props> = ({
   children,
@@ -13,16 +15,19 @@ const Button: React.FC<Props> = ({
   onClick = () => {},
   className,
   background,
-  ...props
+  color,
 }) => {
   return (
     <button
       type="button"
-      className={`${className} ${background} px-4 py-2 rounded-md bg-secondary`}
+      className={` px-4 py-2 h-[50px] rounded-md bg-secondary ${className} ${background}`}
       onClick={onClick}
-      {...props}
     >
-      {text ? <span className="text-white">{text}</span> : children}
+      {text ? (
+        <span className={` font-semibold ${color} `}>{text}</span>
+      ) : (
+        children
+      )}
     </button>
   );
 };

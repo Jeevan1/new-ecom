@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   title: "GEOMART | Online E-commerce Platform",
   description: " GEOMART | Online E-commerce Platform",
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{

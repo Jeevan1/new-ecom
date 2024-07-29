@@ -9,6 +9,7 @@ interface Props {
   onChange?: (e: any) => void;
   value?: string;
   defaultValue?: string;
+  className?: string;
 }
 const InputField: React.FC<Props> = ({
   label,
@@ -18,9 +19,10 @@ const InputField: React.FC<Props> = ({
   onChange = () => {},
   value,
   defaultValue,
+  className,
 }) => {
   return (
-    <div className="flex flex-col h-full w-full">
+    <div className={`flex flex-col h-full w-full ${className}`}>
       {label && <label htmlFor={name}>{label}</label>}
       <input
         type="text"

@@ -15,7 +15,7 @@ const initialState: ProductState = {
 export const getProducts = createAsyncThunk(
   "products/getProducts",
   async () => {
-    const url = "https://dummyjson.com/products/";
+    const url = "https://dummyjson.com/products?limit=0";
     const options = {
       method: "GET",
     };

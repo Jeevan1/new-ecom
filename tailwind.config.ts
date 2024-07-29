@@ -48,6 +48,7 @@ const config: Config = {
         "128": "32rem", // Custom heights
         "144": "36rem",
         "160": "40rem",
+        "400": "400px",
         "half-screen": "50vh", // Half screen height
         "screen-75": "75vh", // 75% of the screen height
       },

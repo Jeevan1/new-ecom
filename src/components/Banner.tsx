@@ -13,7 +13,7 @@ const Banner = () => {
   const products = useSelector((state: any) => state.products.products);
   return (
     <div className="w-full py-4">
-      <div className="w-80 mx-auto h-[500px] flex gap-4">
+      <div className="w-full mx-auto h-[500px] flex gap-4">
         <div className="w-[70%] h-full">
           <Swiper
             navigation={true}
