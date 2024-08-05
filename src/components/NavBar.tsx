@@ -1,5 +1,9 @@
 "use client";
+import { supabase } from "@/lib/db";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import React, { useEffect } from "react";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
@@ -8,6 +12,43 @@ import { MdOutlineArrowDropDown } from "react-icons/md";
 
 const NavBar = () => {
   const [categories, setCategories] = React.useState<string[]>([]);
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  type Auth = {
+    isAuth: boolean;
+    name: string | null | undefined;
+    email: string | null | undefined;
+    image: string | null | undefined;
+  };
+  let auth: Auth = {
+    isAuth: false,
+    name: null,
+    email: null,
+    image: null,
+  };
+
+  if (session?.user) {
+    auth = {
+      isAuth: true,
+      name: session?.user?.name,
+      email: session?.user?.email,
+      image: session?.user?.image,
+    };
+  }
+  const [user, setUser] = React.useState([]);
+
+  async function fetchUsers() {
+    const { data, error } = await supabase.from("users").select("*");
+
+    if (error) {
+      console.error("Error fetching users:", error);
+    } else {
+      console.log("Users data:", data);
+    }
+  }
+
+  fetchUsers();
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -91,6 +132,21 @@ const NavBar = () => {
                 <FaYoutube size={16} />
               </Link>
             </li>
+            {!auth.isAuth ? (
+              <li
+                className="cursor-pointer"
+                onClick={() => router.push("/login")}
+              >
+                Login
+              </li>
+            ) : (
+              <li>
+                <p>{session?.user?.name}</p>
+                <Link href="/" onClick={() => signOut()}>
+                  Logout
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

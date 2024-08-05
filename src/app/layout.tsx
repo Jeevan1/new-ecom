@@ -3,6 +3,7 @@ import "./globals.css";
 import { Provider } from "react-redux";
 import { store } from "@/lib";
 import StoreProvider from "./StoreProvider";
+import SessionWrapper from "./SessionWrapper";
 
 export const metadata: Metadata = {
   title: "GEOMART | Online E-commerce Platform",
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={""}>
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          <SessionWrapper>{children}</SessionWrapper>
+        </StoreProvider>
       </body>
     </html>
   );

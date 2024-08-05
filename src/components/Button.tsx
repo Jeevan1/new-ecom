@@ -19,7 +19,7 @@ const Button: React.FC<Props> = ({
 }) => {
   return (
     <button
-      type="button"
+      // type="button"
       className={` px-4 py-2 h-[50px] rounded-md bg-secondary ${className} ${background}`}
       onClick={onClick}
     >

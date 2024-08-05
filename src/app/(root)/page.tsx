@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { getCategories } from "../api-service";
 import CategoryCard from "@/components/CategoryCard";
+import { supabase } from "../../lib/db";
 
 type Category = {
   slug: string;
@@ -11,8 +12,16 @@ type Category = {
 };
 const Page = async () => {
   const { categories, loading } = await getCategories();
+
   return (
     <div className="w-80 mx-auto">
+      {
+        // <p>
+        //   {data.map((item: any) => (
+        //     <p>www{item.email}</p>
+        //   ))}
+        // </p>
+      }
       <Banner />
 
       <div className="my-10">
